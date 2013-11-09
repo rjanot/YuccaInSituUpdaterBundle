@@ -59,15 +59,21 @@ class UpdaterButton extends \Twig_Extension
     /**
      * @param $formName
      * @param $ids
+     * @param $add
      * @return bool
      */
-    protected function isAllowed($formName, $ids)
+    protected function isAllowed($formName, $ids, $add=false)
     {
         $configuration = $this->updater->getConfiguration($formName);
-        $models = $this->updater->getModels($formName, $ids, $configuration);
+
+        if($add) {
+            $models = array();
+        } else {
+            $models = $this->updater->getModels($formName, $ids, $configuration);
+        }
 
         try {
-            $this->updater->checkSecurity($formName, $ids, $configuration, $models);
+            $this->updater->checkSecurity($formName, $ids, $configuration, $models, $add);
 
             return true;
         } catch (AccessDeniedException $e) {
@@ -76,19 +82,29 @@ class UpdaterButton extends \Twig_Extension
 
     }
 
-    public function inSituUpdater($formName, $ids)
+    public function inSituUpdater($formName, $ids, $add=false)
     {
-        if (false === $this->isAllowed($formName, $ids)) {
+        if (false === $this->isAllowed($formName, $ids, $add)) {
             return '';
         }
 
-        return $this->twigEnvironment->render(
-            'YuccaInSituUpdaterBundle:UpdaterButton:updater-button.html.twig',
-            array(
-                'form_name' => $formName,
-                'ids' => $ids,
-            )
+        $args = array(
+            'form_name' => $formName,
+            'ids' => $ids,
         );
+
+        if($add) {
+            return $this->twigEnvironment->render(
+                'YuccaInSituUpdaterBundle:UpdaterButton:add-button.html.twig',
+                $args
+            );
+        } else {
+            return $this->twigEnvironment->render(
+                'YuccaInSituUpdaterBundle:UpdaterButton:updater-button.html.twig',
+                $args
+            );
+
+        }
     }
 
     /**

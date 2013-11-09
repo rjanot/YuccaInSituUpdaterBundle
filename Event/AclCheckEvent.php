@@ -17,19 +17,28 @@ class AclCheckEvent extends Event
     protected $form_name;
     protected $ids;
     protected $configuration;
+    protected $handled;
 
     /**
      * @param $form_name
      * @param $ids
      * @param $configuration
      * @param $models
+     * @param $add
      */
-    public function __construct($form_name, $ids, $configuration, $models)
+    public function __construct($form_name, $ids, $configuration, $models, $add=false)
     {
         $this->form_name = $form_name;
         $this->ids = $ids;
         $this->configuration = $configuration;
         $this->models = $models;
+        $this->add = $add;
+        $this->handled = false;
+    }
+
+    public function isAdd()
+    {
+        return $this->add ? true : false;
     }
 
     public function getModels()
@@ -50,5 +59,15 @@ class AclCheckEvent extends Event
     public function getIds()
     {
         return $this->ids;
+    }
+
+    public function setHandled($handled = true)
+    {
+        $this->handled = $handled;
+    }
+
+    public function isHandled()
+    {
+        return $this->handled;
     }
 }

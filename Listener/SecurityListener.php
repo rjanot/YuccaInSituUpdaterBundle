@@ -32,5 +32,7 @@ class SecurityListener
         if (false === $this->securityContext->isGranted($configuration['roles'])) {
             throw new AccessDeniedException();
         }
+
+        $event->setHandled();
     }
 }
