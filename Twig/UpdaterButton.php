@@ -48,7 +48,11 @@ class UpdaterButton extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            new \Twig_SimpleFunction('in_situ_updater_button', array($this, 'inSituUpdater'), array('is_safe' => array('html')))
+            new \Twig_SimpleFunction(
+                'in_situ_updater_button',
+                array($this, 'inSituUpdater'),
+                array('is_safe' => array('html'))
+            )
         );
     }
 
@@ -57,7 +61,8 @@ class UpdaterButton extends \Twig_Extension
      * @param $ids
      * @return bool
      */
-    protected function isAllowed($formName, $ids) {
+    protected function isAllowed($formName, $ids)
+    {
         $configuration = $this->updater->getConfiguration($formName);
         $models = $this->updater->getModels($formName, $ids, $configuration);
 
@@ -73,7 +78,7 @@ class UpdaterButton extends \Twig_Extension
 
     public function inSituUpdater($formName, $ids)
     {
-        if(false === $this->isAllowed($formName, $ids)) {
+        if (false === $this->isAllowed($formName, $ids)) {
             return '';
         }
 
@@ -97,4 +102,3 @@ class UpdaterButton extends \Twig_Extension
         return 'yucca_in_situ_updater_button';
     }
 }
-

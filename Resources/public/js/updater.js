@@ -2,7 +2,7 @@ YuccaInSituUpdater = (function() {
     function live(eventType, elementSelector, cb) {
         document.addEventListener(eventType, function (event) {
             elements = document.querySelectorAll(elementSelector)
-            for(elementIndex in elements) {
+            for (elementIndex in elements) {
                 if (event.target == elements[elementIndex] ) {
                     cb.call(event.target, event);
                 }

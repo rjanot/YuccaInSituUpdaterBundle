@@ -11,7 +11,8 @@ namespace Yucca\InSituUpdaterBundle\Event;
 
 use Symfony\Component\EventDispatcher\Event;
 
-class AclCheckEvent extends Event {
+class AclCheckEvent extends Event
+{
     protected $models;
     protected $form_name;
     protected $ids;
@@ -23,26 +24,31 @@ class AclCheckEvent extends Event {
      * @param $configuration
      * @param $models
      */
-    public function __construct($form_name, $ids, $configuration, $models) {
+    public function __construct($form_name, $ids, $configuration, $models)
+    {
         $this->form_name = $form_name;
         $this->ids = $ids;
         $this->configuration = $configuration;
         $this->models = $models;
     }
 
-    public function getModels() {
+    public function getModels()
+    {
         return $this->models;
     }
 
-    public function getConfiguration() {
+    public function getConfiguration()
+    {
         return $this->configuration;
     }
 
-    public function getFormName() {
+    public function getFormName()
+    {
         return $this->form_name;
     }
 
-    public function getIds() {
+    public function getIds()
+    {
         return $this->ids;
     }
-} 
+}

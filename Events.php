@@ -9,8 +9,9 @@
  */
 namespace Yucca\InSituUpdaterBundle;
 
-final class Events {
+final class Events
+{
     const onAclCheck = 'yucca_in_situ_updater.acl_check';
     const onModelLoad = 'yucca_in_situ_updater.model.load';
     const onModelSave = 'yucca_in_situ_updater.model.save';
-} 
+}

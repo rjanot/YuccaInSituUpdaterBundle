@@ -13,10 +13,12 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Security\Core\SecurityContextInterface;
 use Yucca\InSituUpdaterBundle\Event\AclCheckEvent;
 
-class SecurityListener {
+class SecurityListener
+{
     protected $yuccaEntityManager;
 
-    public function __construct(SecurityContextInterface $securityContext) {
+    public function __construct(SecurityContextInterface $securityContext)
+    {
         $this->securityContext = $securityContext;
     }
 
@@ -24,10 +26,11 @@ class SecurityListener {
      * @param AclCheckEvent $event
      * @throws AccessDeniedException
      */
-    public function onAclCheck(AclCheckEvent $event) {
+    public function onAclCheck(AclCheckEvent $event)
+    {
         $configuration = $event->getConfiguration();
-        if(false === $this->securityContext->isGranted($configuration['roles'])) {
+        if (false === $this->securityContext->isGranted($configuration['roles'])) {
             throw new AccessDeniedException();
         }
     }
-} 
+}

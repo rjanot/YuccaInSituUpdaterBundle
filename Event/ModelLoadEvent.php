@@ -11,7 +11,8 @@ namespace Yucca\InSituUpdaterBundle\Event;
 
 use Symfony\Component\EventDispatcher\Event;
 
-class ModelLoadEvent extends Event {
+class ModelLoadEvent extends Event
+{
     protected $models;
     protected $form_name;
     protected $ids;
@@ -22,29 +23,35 @@ class ModelLoadEvent extends Event {
      * @param $ids
      * @param $configuration
      */
-    public function __construct($form_name, $ids, $configuration) {
+    public function __construct($form_name, $ids, $configuration)
+    {
         $this->form_name = $form_name;
         $this->ids = $ids;
         $this->configuration = $configuration;
     }
 
-    public function setModels($models) {
+    public function setModels($models)
+    {
         $this->models = $models;
     }
 
-    public function getModels() {
+    public function getModels()
+    {
         return $this->models;
     }
 
-    public function getConfiguration() {
+    public function getConfiguration()
+    {
         return $this->configuration;
     }
 
-    public function getFormName() {
+    public function getFormName()
+    {
         return $this->form_name;
     }
 
-    public function getIds() {
+    public function getIds()
+    {
         return $this->ids;
     }
-} 
+}

@@ -33,7 +33,7 @@ class YuccaInSituUpdaterExtension extends Extension
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
 
-        foreach($config as $formName=>$value) {
+        foreach ($config as $formName => $value) {
             $container->setParameter('yucca_in_situ_updater.'.$formName, $value);
         }
     }

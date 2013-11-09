@@ -13,10 +13,12 @@ use Yucca\Component\EntityManager;
 use Yucca\InSituUpdaterBundle\Event\ModelLoadEvent;
 use Yucca\InSituUpdaterBundle\Event\ModelSaveEvent;
 
-class ModelListener {
+class ModelListener
+{
     protected $yuccaEntityManager;
 
-    public function __construct(EntityManager $yuccaEntityManager) {
+    public function __construct(EntityManager $yuccaEntityManager)
+    {
         $this->yuccaEntityManager = $yuccaEntityManager;
     }
 
@@ -25,14 +27,15 @@ class ModelListener {
      * @return array
      * @throws \InvalidArgumentException
      */
-    public function onModelLoad(ModelLoadEvent $event) {
+    public function onModelLoad(ModelLoadEvent $event)
+    {
         $configuration = $event->getConfiguration();
         $ids = $event->getIds();
 
         //Get models
         $models = array();
-        foreach($configuration['entities'] as $entityIndex => $entity) {
-            if(false === isset($ids[$entityIndex])) {
+        foreach ($configuration['entities'] as $entityIndex => $entity) {
+            if (false === isset($ids[$entityIndex])) {
                 throw new \InvalidArgumentException(sprintf('Entity "%s" not found in configuration', $entity['name']));
             }
             $models['entity:'.$entity['name']] = $this->yuccaEntityManager->load(
@@ -49,14 +52,16 @@ class ModelListener {
      * @return array
      * @throws \InvalidArgumentException
      */
-    public function onModelSave(ModelSaveEvent $event) {
-        foreach($event->getModels() as $index => $model) {
+    public function onModelSave(ModelSaveEvent $event)
+    {
+        foreach ($event->getModels() as $index => $model) {
             //Launch event save
             $this->save($event, $index, $model);
         }
     }
 
-    protected function save(ModelSaveEvent $event, $index, $model) {
+    protected function save(ModelSaveEvent $event, $index, $model)
+    {
         $this->yuccaEntityManager->save($model);
     }
-} 
+}
