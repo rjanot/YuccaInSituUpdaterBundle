@@ -1,0 +1,23 @@
+<html>
+<head>
+    <style>
+        body {
+            font-family: sans-serif;
+            font-size: 1em;
+            font-weight: normal;
+            font-style: normal;
+            text-decoration: none;
+        }
+        #yucca_in_situ_updater label {font-weight:bold;}
+        #yucca_in_situ_updater .entity label {width:150px;display:inline-block;text-align:right;margin-right:10px;}
+        #yucca_in_situ_updater .entity label.required:after{content:'*';color: red}
+        #yucca_in_situ_updater .entity * {vertical-align: top;}
+        #yucca_in_situ_updater input, #yucca_in_situ_updater textarea {width: 300px;border: 1px solid black;}
+        #yucca_in_situ_updater textarea {resize: none;height:75px;}
+    </style>
+    <title>{% block title %}{{ 'Editor' | trans({},'in_situ') }}{% endblock %}</title>
+</head>
+<body>
+    {% block content %}{% endblock %}
+</body>
+</html>

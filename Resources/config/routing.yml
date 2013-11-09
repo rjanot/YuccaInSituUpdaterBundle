@@ -1,0 +1,4 @@
+yucca_in_situ_updater_form:
+    pattern:  /in_situ_updater/{form_name}
+    defaults:
+        _controller: YuccaInSituUpdaterBundle:Form:index
