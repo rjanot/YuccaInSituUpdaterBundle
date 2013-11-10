@@ -1,4 +1,4 @@
 {% set yucca_in_situ_updater_need_js = 1 %}
-<button data-yucca-form-href="{{ url('yucca_in_situ_updater_form',{'form_name':form_name, 'ids':ids, 'add':1}) }}">
+<button class="yucca-in-situ-button yucca-in-situ-add-button" data-yucca-form-href="{{ url('yucca_in_situ_updater_form',{'form_name':form_name, 'ids':ids, 'add':1}) }}">
     {{ ('Add ' ~ form_name) | trans({}, 'in_situ')}}
 </button>
