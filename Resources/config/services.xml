@@ -22,6 +22,7 @@
             <argument type="service" id="yucca.entity_manager" />
             <argument type="service" id="form.factory" />
             <argument type="service" id="event_dispatcher" />
+            <argument type="service" id="security.context" />
         </service>
 
         <service id="yucca_in_situ_updater.model_listener" class="%yucca_in_situ_updater.model_listener.class%">
