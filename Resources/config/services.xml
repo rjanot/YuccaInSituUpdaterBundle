@@ -28,6 +28,7 @@
         <service id="yucca_in_situ_updater.model_listener" class="%yucca_in_situ_updater.model_listener.class%">
             <tag name="kernel.event_listener" event="yucca_in_situ_updater.model.load:default" method="onModelLoad" />
             <tag name="kernel.event_listener" event="yucca_in_situ_updater.model.save:default" method="onModelSave" />
+            <tag name="kernel.event_listener" event="yucca_in_situ_updater.model.delete:default" method="onModelDelete" />
             <argument type="service" id="yucca.entity_manager" />
         </service>
 

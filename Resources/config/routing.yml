@@ -2,3 +2,8 @@ yucca_in_situ_updater_form:
     pattern:  /in_situ_updater/{form_name}
     defaults:
         _controller: YuccaInSituUpdaterBundle:Form:index
+
+yucca_in_situ_updater_delete:
+    pattern:  /in_situ_updater/delete/{form_name}
+    defaults:
+        _controller: YuccaInSituUpdaterBundle:Delete:index

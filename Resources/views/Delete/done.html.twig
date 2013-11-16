@@ -1,0 +1,10 @@
+{% extends 'YuccaInSituUpdaterBundle:Delete:layout.html.twig' %}
+
+
+{% block content %}
+    <script>
+        window.opener.location.reload();
+        setTimeout(window.close, 2500);
+    </script>
+    <span>{{ 'Done, you\'ll never hear of it again :)' | trans({},'in_situ') }}</span>
+{% endblock %}

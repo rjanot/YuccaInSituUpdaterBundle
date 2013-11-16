@@ -1,0 +1,9 @@
+{% extends 'YuccaInSituUpdaterBundle:Delete:layout.html.twig' %}
+
+
+{% block content %}
+    <form method="POST">
+        <span>{{ 'Are you sure?' | trans({},'in_situ') }}</span>
+        <input type="submit" value="{{ 'Yes, delete it!' | trans({},'in_situ') }}">
+    </form>
+{% endblock %}

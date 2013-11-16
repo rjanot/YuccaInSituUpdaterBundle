@@ -10,6 +10,7 @@
 namespace Yucca\InSituUpdaterBundle\Listener;
 
 use Yucca\Component\EntityManager;
+use Yucca\InSituUpdaterBundle\Event\ModelDeleteEvent;
 use Yucca\InSituUpdaterBundle\Event\ModelLoadEvent;
 use Yucca\InSituUpdaterBundle\Event\ModelSaveEvent;
 
@@ -60,8 +61,26 @@ class ModelListener
         }
     }
 
+    /**
+     * @param ModelDeleteEvent $event
+     * @return array
+     * @throws \InvalidArgumentException
+     */
+    public function onModelDelete(ModelDeleteEvent $event)
+    {
+        foreach ($event->getModels() as $index => $model) {
+            //Launch event save
+            $this->delete($event, $index, $model);
+        }
+    }
+
     protected function save(ModelSaveEvent $event, $index, $model)
     {
         $this->yuccaEntityManager->save($model);
+    }
+
+    protected function delete(ModelDeleteEvent $event, $index, $model)
+    {
+        $this->yuccaEntityManager->remove($model);
     }
 }

@@ -15,4 +15,5 @@ final class Events
     const onModelMap = 'yucca_in_situ_updater.model.map';
     const onModelLoad = 'yucca_in_situ_updater.model.load';
     const onModelSave = 'yucca_in_situ_updater.model.save';
+    const onModelDelete = 'yucca_in_situ_updater.model.delete';
 }

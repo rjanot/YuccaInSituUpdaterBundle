@@ -1,0 +1,4 @@
+{% set yucca_in_situ_updater_need_js = 1 %}
+<button class="yucca-in-situ-button yucca-in-situ-delete-button" data-yucca-form-href="{{ url('yucca_in_situ_updater_delete',{'form_name':form_name, 'ids':ids}) }}">
+    {{ ('Delete ' ~ form_name) | trans({}, 'in_situ')}}
+</button>

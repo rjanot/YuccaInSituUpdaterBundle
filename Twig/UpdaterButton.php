@@ -52,6 +52,11 @@ class UpdaterButton extends \Twig_Extension
                 'in_situ_updater_button',
                 array($this, 'inSituUpdater'),
                 array('is_safe' => array('html'))
+            ),
+            new \Twig_SimpleFunction(
+                'in_situ_deletion_button',
+                array($this, 'inSituDeletion'),
+                array('is_safe' => array('html'))
             )
         );
     }
@@ -105,6 +110,23 @@ class UpdaterButton extends \Twig_Extension
             );
 
         }
+    }
+
+    public function inSituDeletion($formName, $ids)
+    {
+        if (false === $this->isAllowed($formName, $ids)) {
+            return '';
+        }
+
+        $args = array(
+            'form_name' => $formName,
+            'ids' => $ids,
+        );
+
+        return $this->twigEnvironment->render(
+            'YuccaInSituUpdaterBundle:UpdaterButton:delete-button.html.twig',
+            $args
+        );
     }
 
     /**
