@@ -11,7 +11,7 @@ namespace Yucca\InSituUpdaterBundle\Service;
 
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\EventDispatcher\EventDispatcher;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Form\FormFactory;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Security\Core\SecurityContextInterface;
@@ -28,14 +28,14 @@ class Updater
      * @param ContainerInterface $container
      * @param EntityManager $yuccaEntityManager
      * @param FormFactory $formFactory
-     * @param \Symfony\Component\EventDispatcher\EventDispatcher $eventDispatcher
+     * @param \Symfony\Component\EventDispatcher\EventDispatcherInterface $eventDispatcher
      * @param \Symfony\Component\Security\Core\SecurityContextInterface $securityContext
      */
     public function __construct(
         ContainerInterface $container,
         EntityManager $yuccaEntityManager,
         FormFactory $formFactory,
-        EventDispatcher $eventDispatcher,
+        EventDispatcherInterface $eventDispatcher,
         SecurityContextInterface $securityContext
     )
     {
