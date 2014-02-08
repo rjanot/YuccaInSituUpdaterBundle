@@ -144,7 +144,13 @@ class Updater
                 $this->securityContext,
                 null
             ),
-            $models
+            $models,
+            array(
+                'action'=>$this->container->get('router')->generate(
+                        'yucca_in_situ_updater_form',
+                        array('form_name'=>$form_name, 'ids'=>$ids, 'add'=>$add ? 1 : 0)
+                )
+            )
         );
 
         return $form;

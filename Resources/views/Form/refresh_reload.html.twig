@@ -1,4 +1,4 @@
 <script>
     window.opener.location.reload();
-    document.location = '{{ redirect_to }}';
+    document.location = '{{ redirect_to | raw }}';
 </script>
