@@ -11,6 +11,8 @@ namespace Yucca\InSituUpdaterBundle;
 
 final class Events
 {
+    const onFormPreCreation = 'yucca_in_situ_updater.form_pre_creation';
+    const onFormPostCreation = 'yucca_in_situ_updater.form_post_creation';
     const onAclCheck = 'yucca_in_situ_updater.acl_check';
     const onModelMap = 'yucca_in_situ_updater.model.map';
     const onModelLoad = 'yucca_in_situ_updater.model.load';
