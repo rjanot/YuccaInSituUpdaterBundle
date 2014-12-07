@@ -44,7 +44,6 @@ class ModelListener
                 $ids[$entityIndex]
             );
         }
-
         $event->setModels($models);
     }
 

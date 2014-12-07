@@ -71,7 +71,7 @@ class UpdaterButton extends \Twig_Extension
     {
         $configuration = $this->updater->getConfiguration($formName);
 
-        if($add) {
+        if ($add) {
             $models = array();
         } else {
             $models = $this->updater->getModels($formName, $ids, $configuration);
@@ -84,9 +84,14 @@ class UpdaterButton extends \Twig_Extension
         } catch (AccessDeniedException $e) {
             return false;
         }
-
     }
 
+    /**
+     * @param $formName
+     * @param $ids
+     * @param bool $add
+     * @return string
+     */
     public function inSituUpdater($formName, $ids, $add=false)
     {
         if (false === $this->isAllowed($formName, $ids, $add)) {
