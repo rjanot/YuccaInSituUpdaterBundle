@@ -39,7 +39,7 @@ class ModelListener
             if (false === isset($ids[$entityIndex])) {
                 throw new \InvalidArgumentException(sprintf('Entity "%s" not found in configuration', $entity['name']));
             }
-            $models['entity:'.$entity['name']] = $this->yuccaEntityManager->load(
+            $models['entity--'.$entity['name']] = $this->yuccaEntityManager->load(
                 $entity['entity_class_name'],
                 $ids[$entityIndex]
             );
