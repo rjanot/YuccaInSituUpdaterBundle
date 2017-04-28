@@ -11,12 +11,13 @@
 namespace Yucca\InSituUpdaterBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Yucca\InSituUpdaterBundle\Event\ModelMapEvent;
 
 class FormController extends Controller
 {
-    public function indexAction($form_name)
+    public function indexAction(Request $request, $form_name)
     {
         /**
          * Get Updater Service
@@ -26,7 +27,6 @@ class FormController extends Controller
         /**
          * Get requested ids
          */
-        $request = $this->getRequest();
         $requestIds = $request->query->get('ids', array());
 
         /**
@@ -42,7 +42,7 @@ class FormController extends Controller
          * Submit form
          */
         if ($request->isMethod('POST')) {
-            $form->bind($request);
+            $form->handleRequest($request);
             if ($form->isValid()) {
                 //Launch custom event to override some form mapping (like Plain text Password to hashed password for example)
                 $configuration = $updaterService->getConfiguration($form_name);

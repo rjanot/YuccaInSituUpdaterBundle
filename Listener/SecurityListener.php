@@ -9,17 +9,17 @@
  */
 namespace Yucca\InSituUpdaterBundle\Listener;
 
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
-use Symfony\Component\Security\Core\SecurityContextInterface;
 use Yucca\InSituUpdaterBundle\Event\AclCheckEvent;
 
 class SecurityListener
 {
-    protected $yuccaEntityManager;
+    protected $securityAuthorizationChecker;
 
-    public function __construct(SecurityContextInterface $securityContext)
+    public function __construct(AuthorizationCheckerInterface $securityAuthorizationChecker)
     {
-        $this->securityContext = $securityContext;
+        $this->securityAuthorizationChecker = $securityAuthorizationChecker;
     }
 
     /**
@@ -29,7 +29,7 @@ class SecurityListener
     public function onAclCheck(AclCheckEvent $event)
     {
         $configuration = $event->getConfiguration();
-        if (false === $this->securityContext->isGranted($configuration['roles'])) {
+        if (false === $this->securityAuthorizationChecker->isGranted($configuration['roles'])) {
             throw new AccessDeniedException();
         }
 

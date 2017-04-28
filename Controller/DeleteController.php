@@ -11,12 +11,13 @@
 namespace Yucca\InSituUpdaterBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Yucca\InSituUpdaterBundle\Event\ModelMapEvent;
 
 class DeleteController extends Controller
 {
-    public function indexAction($form_name)
+    public function indexAction(Request $request, $form_name)
     {
         /**
          * Get Updater Service
@@ -26,7 +27,6 @@ class DeleteController extends Controller
         /**
          * Get requested ids
          */
-        $request = $this->getRequest();
         $requestIds = $request->query->get('ids', array());
 
         /**

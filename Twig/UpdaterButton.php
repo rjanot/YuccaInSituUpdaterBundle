@@ -12,15 +12,10 @@ namespace Yucca\InSituUpdaterBundle\Twig;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
-use Symfony\Component\Security\Core\SecurityContextInterface;
 use Yucca\InSituUpdaterBundle\Service\Updater;
 
 class UpdaterButton extends \Twig_Extension
 {
-    /**
-     * @var \Twig_Environment
-     */
-    public $twigEnvironment;
     /**
      * @var Updater
      */
@@ -29,14 +24,6 @@ class UpdaterButton extends \Twig_Extension
     public function __construct(Updater $updater)
     {
         $this->updater = $updater;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function initRuntime(\Twig_Environment $environment)
-    {
-        $this->twigEnvironment = $environment;
     }
 
     /**
@@ -51,12 +38,12 @@ class UpdaterButton extends \Twig_Extension
             new \Twig_SimpleFunction(
                 'in_situ_updater_button',
                 array($this, 'inSituUpdater'),
-                array('is_safe' => array('html'))
+                array('needs_environment'=>true, 'is_safe' => array('html'))
             ),
             new \Twig_SimpleFunction(
                 'in_situ_deletion_button',
                 array($this, 'inSituDeletion'),
-                array('is_safe' => array('html'))
+                array('needs_environment'=>true, 'is_safe' => array('html'))
             )
         );
     }
@@ -92,7 +79,7 @@ class UpdaterButton extends \Twig_Extension
      * @param bool $add
      * @return string
      */
-    public function inSituUpdater($formName, $ids, $add=false)
+    public function inSituUpdater(\Twig_Environment $env, $formName, $ids, $add=false)
     {
         if (false === $this->isAllowed($formName, $ids, $add)) {
             return '';
@@ -104,12 +91,12 @@ class UpdaterButton extends \Twig_Extension
         );
 
         if($add) {
-            return $this->twigEnvironment->render(
+            return $env->render(
                 'YuccaInSituUpdaterBundle:UpdaterButton:add-button.html.twig',
                 $args
             );
         } else {
-            return $this->twigEnvironment->render(
+            return $env->render(
                 'YuccaInSituUpdaterBundle:UpdaterButton:updater-button.html.twig',
                 $args
             );
@@ -117,7 +104,7 @@ class UpdaterButton extends \Twig_Extension
         }
     }
 
-    public function inSituDeletion($formName, $ids)
+    public function inSituDeletion(\Twig_Environment $env, $formName, $ids)
     {
         if (false === $this->isAllowed($formName, $ids)) {
             return '';
@@ -128,7 +115,7 @@ class UpdaterButton extends \Twig_Extension
             'ids' => $ids,
         );
 
-        return $this->twigEnvironment->render(
+        return $env->render(
             'YuccaInSituUpdaterBundle:UpdaterButton:delete-button.html.twig',
             $args
         );
